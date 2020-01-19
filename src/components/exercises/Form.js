@@ -21,16 +21,16 @@ const Form = ({ muscles, onSubmit, initExercise }) => {
 
   const [exercise, setExercise] = useState(getInitState());
 
-  const handleChange = name => e => {
+  const handleChange = e => {
     setExercise({
       ...exercise,
-      [name]: e.target.value
+      [e.target.name]: e.target.value
     });
   };
 
   const handleSubmit = e => {
     onSubmit({
-      id: exercise.title.toLocaleLowerCase().replace(/ /g, "-"),
+      id: exercise.title.toLowerCase().replace(/ /g, "-"),
       ...exercise
     });
   };
@@ -38,19 +38,24 @@ const Form = ({ muscles, onSubmit, initExercise }) => {
   return (
     <form>
       <TextField
+        name="title"
+        id="title"
         label="Title"
         value={exercise.title}
-        onChange={handleChange("title")}
+        onChange={handleChange}
         margin="normal"
         fullWidth
       />
-      <br />
-      <FormControl fullWidth>
-        <InputLabel id="muscles">Muscles</InputLabel>
+      <FormControl fullWidth margin="normal">
+        <InputLabel htmlFor="muscles">Muscles</InputLabel>
         <Select
-          labelId="muscles"
+          inputProps={{
+            name: "muscles",
+            id: "muscles"
+          }}
           value={exercise.muscles}
-          onChange={handleChange("muscles")}
+          name="muscles"
+          onChange={handleChange}
         >
           {muscles.map(muscle => (
             <MenuItem key={muscle} value={muscle}>
@@ -59,17 +64,17 @@ const Form = ({ muscles, onSubmit, initExercise }) => {
           ))}
         </Select>
       </FormControl>
-      <br />
       <TextField
+        name="description"
+        id="description"
+        label="Description"
         multiline
         rows="4"
-        label="Description"
         value={exercise.description}
-        onChange={handleChange("description")}
+        onChange={handleChange}
         margin="normal"
         fullWidth
       />
-      <br />
       <Button
         color="primary"
         variant="contained"

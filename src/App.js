@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Header, Footer } from "./components/layouts";
-import Exercises from "./components/exercises/Exercises";
+import { Viewer } from "./components/exercises/";
 import { muscles, exercises as exercisesInitState } from "./store";
 import { Provider } from "./context";
 
 const App = props => {
   const [exercises, setExercises] = useState(exercisesInitState);
   const [exercise, setExercise] = useState({});
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("");
   const [editMode, setEditMode] = useState(false);
 
   const getExercisesByMuscles = () => {
@@ -82,7 +82,7 @@ const App = props => {
     <Provider value={getContext()}>
       <CssBaseline />
       <Header />
-      <Exercises />
+      <Viewer />
       <Footer />
     </Provider>
   );

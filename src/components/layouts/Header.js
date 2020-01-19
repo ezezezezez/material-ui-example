@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import CreateModal from "../exercises/CreateModal";
+import { CreateModal } from "../exercises/";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -14,7 +14,7 @@ const Header = props => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" color="inherit" className={classes.flex}>
+        <Typography variant="h5" color="inherit" className={classes.flex}>
           Exercise Database
         </Typography>
         <CreateModal />

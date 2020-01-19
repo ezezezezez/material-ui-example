@@ -6,16 +6,20 @@ import AppContext from "../../context";
 const Footer = ({ width }) => {
   const value = useContext(AppContext);
 
-  const { handleCategorySelected } = value;
+  const { category, handleCategorySelected } = value;
 
-  const { category, muscles } = value;
+  const getMuscles = () => {
+    return ["", ...value.muscles];
+  };
+
+  const muscles = getMuscles();
 
   const getIndex = () => {
-    return category ? muscles.findIndex(muscle => muscle === category) + 1 : 0;
+    return muscles.indexOf(category);
   };
 
   const onIndexSelect = (e, index) => {
-    handleCategorySelected(index === 0 ? "" : muscles[index - 1]);
+    handleCategorySelected(muscles[index]);
   };
 
   return (
@@ -29,9 +33,8 @@ const Footer = ({ width }) => {
         variant={width === "xs" ? "scrollable" : "standard"}
         scrollButtons="on"
       >
-        <Tab key="all" label="All" />
         {muscles.map(muscle => (
-          <Tab key={muscle} label={muscle} />
+          <Tab key={muscle} label={muscle || "All"} />
         ))}
       </Tabs>
     </AppBar>

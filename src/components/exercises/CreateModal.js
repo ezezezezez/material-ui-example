@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import Form from "./Form";
+import { Form } from "./";
 import AppContext from "../../context";
 
 const CreateModal = props => {
