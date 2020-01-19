@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react'
 
-const AppContext = createContext();
+export const { Provider, Consumer } = createContext()
 
-export default AppContext;
-
-export const { Provider, Consumer } = AppContext;
+export const withContext = Component => props => (
+  <Consumer>{value => <Component {...value} {...props} />}</Consumer>
+)

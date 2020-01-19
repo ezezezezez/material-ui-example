@@ -1,10 +1,4 @@
-export const muscles = [
-  'shoulders',
-  'chest',
-  'arms',
-  'back',
-  'legs'
-];
+export const muscles = ['shoulders', 'chest', 'arms', 'back', 'legs']
 
 export const exercises = [
   {
@@ -20,7 +14,7 @@ export const exercises = [
     muscles: 'arms'
   },
   {
-    id:'barbell-curls',
+    id: 'barbell-curls',
     title: 'Barbell Curls',
     description: 'Biceps exercise...',
     muscles: 'arms'
@@ -46,7 +40,7 @@ export const exercises = [
   {
     id: 'squats',
     title: 'Squats',
-    description: 'Legs exercies...',
+    description: 'Legs exercise...',
     muscles: 'legs'
   }
-];
+]
