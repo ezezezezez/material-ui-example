@@ -1,7 +1,7 @@
-import React from 'react'
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import CreateModal from '../exercises/CreateModal';
-import { makeStyles } from '@material-ui/core';
+import React from "react";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import CreateModal from "../exercises/CreateModal";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   flex: {
@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = (props) => {
+const Header = props => {
   const classes = useStyles();
   return (
     <AppBar position="static">
@@ -20,7 +20,7 @@ const Header = (props) => {
         <CreateModal />
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

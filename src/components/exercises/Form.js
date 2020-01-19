@@ -1,34 +1,36 @@
-import React, { useState } from 'react'
-// import { makeStyles } from '@material-ui/core/styles';
-import { TextField, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import React, { useState } from "react";
+import {
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const Form = ({ muscles, onSubmit, initExercise }) => {
   const getInitState = () => {
-    return initExercise ? initExercise : {
-      title: '',
-      description: '',
-      muscles: ''
-    };
+    return initExercise
+      ? initExercise
+      : {
+          title: "",
+          description: "",
+          muscles: ""
+        };
   };
 
-  // const classes = useStyles();
-
   const [exercise, setExercise] = useState(getInitState());
-  // useEffect(() => {
-  //   setExercise(getInitState());
-  // }, [initExercise]);
 
   const handleChange = name => e => {
     setExercise({
       ...exercise,
       [name]: e.target.value
-    })
+    });
   };
 
   const handleSubmit = e => {
     onSubmit({
-      id: exercise.title.toLocaleLowerCase().replace(/ /g, '-'),
+      id: exercise.title.toLocaleLowerCase().replace(/ /g, "-"),
       ...exercise
     });
   };
@@ -38,22 +40,22 @@ const Form = ({ muscles, onSubmit, initExercise }) => {
       <TextField
         label="Title"
         value={exercise.title}
-        onChange={handleChange('title')}
+        onChange={handleChange("title")}
         margin="normal"
         fullWidth
       />
       <br />
       <FormControl fullWidth>
-        <InputLabel id="muscles">
-          Muscles
-        </InputLabel>
+        <InputLabel id="muscles">Muscles</InputLabel>
         <Select
           labelId="muscles"
           value={exercise.muscles}
-          onChange={handleChange('muscles')}
+          onChange={handleChange("muscles")}
         >
           {muscles.map(muscle => (
-            <MenuItem key={muscle} value={muscle}>{muscle}</MenuItem>
+            <MenuItem key={muscle} value={muscle}>
+              {muscle}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
@@ -63,7 +65,7 @@ const Form = ({ muscles, onSubmit, initExercise }) => {
         rows="4"
         label="Description"
         value={exercise.description}
-        onChange={handleChange('description')}
+        onChange={handleChange("description")}
         margin="normal"
         fullWidth
       />
@@ -74,10 +76,10 @@ const Form = ({ muscles, onSubmit, initExercise }) => {
         onClick={handleSubmit}
         disabled={!exercise.title || !exercise.muscles}
       >
-        {initExercise ? 'Edit' : 'Create'}
+        {initExercise ? "Edit" : "Create"}
       </Button>
     </form>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;

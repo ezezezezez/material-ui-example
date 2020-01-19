@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
-import './App.css';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Header, Footer } from './components/layouts';
-import Exercises from './components/exercises/Exercises';
-import { muscles, exercises as exercisesInitState } from './store';
-import { Provider } from './context';
+import React, { useState } from "react";
+import "./App.css";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { Header, Footer } from "./components/layouts";
+import Exercises from "./components/exercises/Exercises";
+import { muscles, exercises as exercisesInitState } from "./store";
+import { Provider } from "./context";
 
-const App = (props) => {
+const App = props => {
   const [exercises, setExercises] = useState(exercisesInitState);
   const [exercise, setExercise] = useState({});
   const [category, setCategory] = useState();
   const [editMode, setEditMode] = useState(false);
 
   const getExercisesByMuscles = () => {
-    const initExercises = muscles.reduce((exercises, muscle) => ({
-      ...exercises,
-      [muscle]: []
-    }), {});
+    const initExercises = muscles.reduce(
+      (exercises, muscle) => ({
+        ...exercises,
+        [muscle]: []
+      }),
+      {}
+    );
 
-    return Object.entries(exercises.reduce((exercisesByMuscles, exercise) => {
-      const { muscles } = exercise;
+    return Object.entries(
+      exercises.reduce((exercisesByMuscles, exercise) => {
+        const { muscles } = exercise;
 
-      exercisesByMuscles[muscles].push(exercise);
+        exercisesByMuscles[muscles].push(exercise);
 
-      return exercisesByMuscles;
-    }, initExercises));
+        return exercisesByMuscles;
+      }, initExercises)
+    );
   };
 
   const handleCategorySelected = category => {
@@ -37,10 +42,7 @@ const App = (props) => {
   };
 
   const handleExerciseCreated = exercise => {
-    setExercises([
-      ...exercises,
-      exercise
-    ]);
+    setExercises([...exercises, exercise]);
   };
 
   const handleExerciseDelete = id => {
@@ -55,10 +57,7 @@ const App = (props) => {
   };
 
   const handleExerciseEditSubmit = exercise => {
-    setExercises([
-      ...exercises.filter(ex => ex.id !== exercise.id),
-      exercise
-    ]);
+    setExercises([...exercises.filter(ex => ex.id !== exercise.id), exercise]);
     setExercise(exercise);
   };
 
@@ -87,6 +86,6 @@ const App = (props) => {
       <Footer />
     </Provider>
   );
-}
+};
 
 export default App;
